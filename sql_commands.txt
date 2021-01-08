@@ -1,0 +1,2 @@
+SELECT * FROM database;
+SELECT a_table FROM database;
