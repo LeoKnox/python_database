@@ -29,5 +29,10 @@ cursor.execute("SELECT * FROM Intro WHERE level=?", current_level)
 
 print(cursor.fetchall())
 
+current_class = ('Rogue',)
+cursor.execute("SELECT * FROM Intro WHERE char_class=?", current_class)
+
+print(cursor.fetchall())
+
 connection.commit()
 connection.close()
