@@ -4,7 +4,7 @@ connection = sqlite3.connect('intro.db')
 cursor = connection.cursor()
 
 
-#cursor.execute(''' CREATE TABLE IF NOT EXISTS Intro (Char_Id INTEGER PRIMARY KEY AUOT INCREMENT, Name TEXT, char_class TEXT,
+#cursor.execute(''' CREATE TABLE IF NOT EXISTS Intro (Char_Id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT, char_class TEXT,
 #    char_race TEXT, level INT)''')
 
 #cursor.execute("INSERT INTO Intro VALUES ('Xingu', 'Fighter', 'Human', 3)")
