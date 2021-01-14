@@ -4,6 +4,14 @@ CREATE TABLE projects(project_id INT(11) NOT NULL AUTO_INCREMENT, name VARCHAR(3
 
 use projects;
 
-use projects;
-
 CREATE TABLE rooms(room_id INT(11) NOT NULL AUTO_INCREMENT, project_id INT(11) NOT NULL, description VARCHAR(255), PRIMARY KEY(room_id), FOREIGN KEY(project_id) REFERENCES projects(project_id));
+
+show tables;
+
+INSERT INTO projects(name, description) VALUES ("First", "First dungeon to be populated with rooms");
+
+INSERT INTO rooms(description, project_id) VALUES ("Entry Way", 1);
+INSERT INTO rooms(description, project_id) VALUES ("Guard Room", 1);
+
+INSERT INTO projects(name, description) VALUES ("Doom", "This is a dungeon of doom.");
+INSERT INTO rooms(description, project_id) VALUES ("Entrance Room", 2);
