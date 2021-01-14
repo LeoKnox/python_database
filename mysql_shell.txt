@@ -1,1 +1,5 @@
 CREATE DATABASE projects;
+
+CREATE TABLE projects(project_id INT(11) NOT NULL AUTO_INCREMENT, name VARCHAR(30), description VARCHAR(255), PRIMARY KEY(project_id));
+
+use projects;
