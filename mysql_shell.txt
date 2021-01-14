@@ -3,3 +3,7 @@ CREATE DATABASE projects;
 CREATE TABLE projects(project_id INT(11) NOT NULL AUTO_INCREMENT, name VARCHAR(30), description VARCHAR(255), PRIMARY KEY(project_id));
 
 use projects;
+
+use projects;
+
+CREATE TABLE rooms(room_id INT(11) NOT NULL AUTO_INCREMENT, project_id INT(11) NOT NULL, description VARCHAR(255), PRIMARY KEY(room_id), FOREIGN KEY(project_id) REFERENCES projects(project_id));
