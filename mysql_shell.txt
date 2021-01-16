@@ -21,7 +21,7 @@ def add_new_project(cursor, project_title, project_description, task_description
     for description in task_descriptions:
         task_data = (project_id, description)
         tasks_data.append(task_data)
-    cursor.executemany("INSERT INTO rooms(project_id, description VALUES (%s, %s)", tasks_data)
+    cursor.executemany("INSERT INTO rooms(project_id, description) VALUES (%s, %s)", tasks_data)
 
 if __name__ == '__main__':
     db = connect('projects')
