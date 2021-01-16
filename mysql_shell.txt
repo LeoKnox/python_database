@@ -1,17 +1,42 @@
-CREATE DATABASE projects;
+import mysql.connector as mysql
 
-CREATE TABLE projects(project_id INT(11) NOT NULL AUTO_INCREMENT, name VARCHAR(30), description VARCHAR(255), PRIMARY KEY(project_id));
+def connect(db_name):
+    try:
+        return mysql.connect(
+            host='localhost',
+            user='root',
+            password='root',
+            database=db_name
+        )
+    except Error as e:
+        print(e)
 
-use projects;
+def add_new_project(cursor, project_title, project_description, task_descriptions):
+    project_data = (project_title, project_description)
+    cursor.execute("INSERT INTO projects(name, description) VALUES (%s, %s)", project_data)
 
-CREATE TABLE rooms(room_id INT(11) NOT NULL AUTO_INCREMENT, project_id INT(11) NOT NULL, description VARCHAR(255), PRIMARY KEY(room_id), FOREIGN KEY(project_id) REFERENCES projects(project_id));
+    project_id = cursor.lastrowid
 
-show tables;
+    tasks_data = []
+    for description in task_descriptions:
+        task_data = (project_id, description)
+        tasks_data.append(task_data)
+    cursor.executemany("INSERT INTO rooms(project_id, description VALUES (%s, %s)", tasks_data)
 
-INSERT INTO projects(name, description) VALUES ("First", "First dungeon to be populated with rooms");
+if __name__ == '__main__':
+    db = connect('projects')
+    cursor = db.cursor()
 
-INSERT INTO rooms(description, project_id) VALUES ("Entry Way", 1);
-INSERT INTO rooms(description, project_id) VALUES ("Guard Room", 1);
+    rooms = ["Entry", "Guard", "Treasure"]
+    add_new_project(cursor, "Third", "Three times as deadly.", rooms)
+    db.commit()
 
-INSERT INTO projects(name, description) VALUES ("Doom", "This is a dungeon of doom.");
-INSERT INTO rooms(description, project_id) VALUES ("Entrance Room", 2);
+    cursor.execute("SELECT * FROM projects")
+    project_records = cursor.fetchall()
+    print(project_records)
+
+    cursor.execute("SELECT * FROM rooms")
+    rooms_records = cursor.fetchall()
+    print(rooms_records)
+
+    db.close()
