@@ -16,20 +16,20 @@ class Project(Base):
     description = Column(String(length=50))
 
     def __repr__(self):
-        return "<Project(title'{0}', description='{1}",format(self.travel, self.wall)
+        return "<Project(name'{0}', description='{1})'>".format(self.name, self.description)
 
 class Room(Base):
     __tablename__ = 'rooms'
     __table_args__ = {'schema':'projects'}
 
     room_id = Column(Integer, primary_key=True)
-    project_id = Column(Integer, ForeignKey('projects.projects.project_id'))
+    project_id = Column(Integer, ForeignKey('projects.project_id'))
     description = Column(String(length=50))
 
     project = relationship("Project")
 
     def __repr__(self):
-        return "<Room(description='{0}'>".formation(self.description)
+        return "<Room(description='{0})'>".format(self.description)
 
 Base.metadata.create_all(engine)
 
@@ -48,8 +48,8 @@ rooms = [Room(project_id=quadro_dungeon_project.project_id, description="First g
 session.bulk_save_objects(rooms)
 session.commit()
 
-our_project = session.query(Project).filter_by(title='Quadro Dungeon').first()
-print(out_project)
+our_project = session.query(Project).filter_by(name='Quadro Dungeon').first()
+print(our_project)
 
 our_rooms = session.query(Room).all()
 print(rooms)
