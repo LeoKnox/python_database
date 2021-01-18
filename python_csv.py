@@ -26,3 +26,9 @@ with open('./salesperson.csv', 'r') as f:
     for row in csv_data:
         row_tuple = tuple(row)
         cursor.execute('INSERT INTO salesperson(first_name, last_name, email_address, city, state) VALUES(""%s","%s","%s","%s",%s"), row_tuple')
+
+connection.commit()
+cursor.execute("SELECT * FROM salesperson LIMIT 10")
+print(cursor.fetchall())
+
+connection.close()
