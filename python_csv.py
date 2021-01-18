@@ -30,7 +30,7 @@ with open('./salesperson.csv', 'r') as f:
         cursor.execute('INSERT INTO salesperson(first_name, last_name, email_address, city, state) VALUES(""%s","%s","%s","%s",%s"), row_tuple')
         '''
 
-q = '''LOAD DATA LOCAL INFILE '.salesperson.csv INTO TABLE salesperson FIELDS TERMINATED BY ',' ENCLOSED BY '"' (first_name, last_name, email_address, city, state);'''
+q = '''LOAD DATA LOCAL INFILE '.salesperson.csv' INTO TABLE salesperson FIELDS TERMINATED BY ',' ENCLOSED BY '"' (first_name, last_name, email_address, city, state);'''
 
 cursor.execute(q)
 
